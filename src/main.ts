@@ -5,16 +5,17 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors();
+  app.setGlobalPrefix('api');
 
   const config = new DocumentBuilder()
-    .setTitle('Pharmacy Matcher API')
+    .setTitle('E_MEDIX GYAN CENTER')
     .setDescription('Upload Excel and match products')
     .setVersion('1.0')
     .addBearerAuth()
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('docs', app, document);
 
   await app.listen(3000);
 }
