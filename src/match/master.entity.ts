@@ -16,4 +16,7 @@ export class Master {
 
     @Column({ name: 'packing', nullable: true })
     packing: string;
+
+    @Column({ name: 'avg_rate', type: 'decimal', nullable: true })
+    avgRate: number;
 }

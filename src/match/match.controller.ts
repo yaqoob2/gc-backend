@@ -75,6 +75,8 @@ export class MatchController {
         }
 
         const results = await this.matchService.matchCsvRows(parsed.rows);
+        const vendorwiseResults = await this.matchService.buildVendorwiseResults(results);
+        const vendorwiseGrouped = this.matchService.groupVendorwiseResults(vendorwiseResults);
 
         fs.unlinkSync(file.path);
 
@@ -84,6 +86,8 @@ export class MatchController {
             matchedRows: results.filter((r) => r.matchedProduct).length,
             unmatchedRows: results.filter((r) => !r.matchedProduct).length,
             results,
+            vendorwiseResults,
+            vendorwiseGrouped,
         };
     }
 
